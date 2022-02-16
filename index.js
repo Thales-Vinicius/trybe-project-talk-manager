@@ -4,6 +4,16 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
+const controllers = require('./controllers');
+const middlewares = require('./middlewares');
+
+app.get(
+  '/talker',
+  controllers.showTalkers,
+);
+
+app.use(middlewares.errorHandler);
+
 const HTTP_OK_STATUS = 200;
 const PORT = '3000';
 
