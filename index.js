@@ -7,6 +7,17 @@ app.use(bodyParser.json());
 const controllers = require('./controllers');
 const middlewares = require('./middlewares');
 
+const loginMiddlewares = [
+  middlewares.validateEmail,
+  middlewares.createToken,
+  middlewares.validatePassword,
+];
+
+app.post(
+  '/login',
+  loginMiddlewares,
+);
+
 app.get(
   '/talker',
   controllers.showTalkers,
