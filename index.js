@@ -9,8 +9,8 @@ const middlewares = require('./middlewares');
 
 const loginMiddlewares = [
   middlewares.validateEmail,
-  middlewares.createToken,
   middlewares.validatePassword,
+  middlewares.createToken,
 ];
 
 app.post(
