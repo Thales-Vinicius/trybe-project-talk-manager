@@ -12,6 +12,11 @@ app.get(
   controllers.showTalkers,
 );
 
+app.get(
+  '/talker/:id',
+  controllers.getTalkerByid,
+);
+
 app.use(middlewares.errorHandler);
 
 const HTTP_OK_STATUS = 200;
