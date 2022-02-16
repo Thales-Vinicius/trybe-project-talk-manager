@@ -13,9 +13,23 @@ const loginMiddlewares = [
   middlewares.createToken,
 ];
 
+const createTalkerMiddlewares = [
+  middlewares.validateToken,
+  middlewares.validateName,
+  middlewares.validateAge,
+  middlewares.validateTalk,
+  middlewares.validateTalkInfos,
+];
+
 app.post(
   '/login',
   loginMiddlewares,
+);
+
+app.post(
+  '/talker',
+  createTalkerMiddlewares,
+  controllers.createTalker,
 );
 
 app.get(
