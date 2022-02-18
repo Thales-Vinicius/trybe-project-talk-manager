@@ -42,6 +42,18 @@ app.get(
   controllers.getTalkerByid,
 );
 
+app.put(
+  '/talker/:id',
+  createTalkerMiddlewares,
+  controllers.updateTalker,
+);
+
+app.delete(
+  '/talker/:id',
+  middlewares.validateToken,
+  controllers.deleteTalker,
+);
+
 app.use(middlewares.errorHandler);
 
 const HTTP_OK_STATUS = 200;
