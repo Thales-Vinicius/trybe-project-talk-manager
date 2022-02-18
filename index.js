@@ -33,6 +33,12 @@ app.post(
 );
 
 app.get(
+  '/talker/search',
+  middlewares.validateToken,
+  controllers.searchTalker,
+);
+
+app.get(
   '/talker',
   controllers.showTalkers,
 );
