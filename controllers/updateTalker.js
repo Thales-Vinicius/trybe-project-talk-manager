@@ -8,13 +8,13 @@ module.exports = async (req, res, next) => {
 
     const talkers = await readFile('./talker.json', 'utf-8');
     const parsedTalkers = JSON.parse(talkers);
+    const selectedTalker = parsedTalkers.find((talker) => talker.id === Number(id));
     const talkIndex = parsedTalkers.findIndex((talker) => talker.id === Number(id));
-    const updateTalker = { id, name, age, talk: { watchedAt, rate } };
+    const updateTalker = { ...selectedTalker, name, age, talk: { watchedAt, rate } };
     parsedTalkers[talkIndex] = updateTalker;
 
     const stringifyTalkers = JSON.stringify(parsedTalkers, null, 2);
     await writeFile('./talker.json', stringifyTalkers);
-    
     return res.status(200).json(updateTalker);
   } catch (error) {
     return next(error);
